@@ -1,69 +1,222 @@
 <script setup>
-import CartItem from './CartItem.vue';
+import { ref, computed, inject } from 'vue'
+import axios from 'axios'
+
+import DrawerHead from './DrawerHead.vue'
+import CartItemList from './CartItemList.vue'
+import InfoBlock from './InfoBlock.vue'
+
+const props = defineProps({
+  totalPrice: Number
+})
+
+// Состояния для хранения данных заказа
+const customerName1 = ref('')
+const customerName2 = ref('')
+const customerNumber1 = ref('')
+const customerNumber2 = ref('')
+const customerAddress = ref('')
+const deliveryDateTime = ref(null)
+
+// Инжектирование состояния корзины и функции закрытия
+const { Cart, closeDrawer } = inject('Cart')
+
+// Флаг для отслеживания процесса создания заказа
+const isCreating = ref(false)
+
+// Идентификатор заказа
+const orderId = ref(null)
+
+// Метод доставки и его стоимость
+const deliveryMethod = ref('pickup')
+const deliveryCost = computed(() => (deliveryMethod.value === 'courier' ? 500 : 0))
+
+// Функция создания заказа
+const createOrder = async () => {
+  try {
+    isCreating.value = true
+    const { data } = await axios.post(`https://49958ace0bc752bd.mokky.dev/orders`, {
+      items: Cart.value,
+      totalPrice: props.totalPrice.value + deliveryCost.value,
+      customer: {
+        name1: customerName1.value,
+        name2: customerName2.value,
+        number1: customerNumber1.value,
+        number2: customerNumber2.value,
+        address: customerAddress.value
+      },
+      deliveryMethod: deliveryMethod.value,
+      deliveryDateTime: deliveryDateTime.value // Включаем выбранную дату и время в данные заказа
+    })
+
+    Cart.value = [] // Очищаем корзину
+    orderId.value = data.id // Устанавливаем идентификатор заказа
+  } catch (err) {
+    console.log(err)
+  } finally {
+    isCreating.value = false
+    closeDrawer() // Закрываем боковую панель после создания заказа
+  }
+}
+
+// Вычисляемое свойство, определяющее пуста ли корзина
+const cartIsEmpty = computed(() => Cart.value.length === 0)
+
+// Вычисляемое свойство, определяющее заблокирована ли кнопка "Оформить заказ"
+const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
 </script>
 
 <template>
-  <div class="fixed z-10 top-0 h-full w-full bg-black opacity-70" />
-  <div
-    class="flex flex-col justify-between fixed h-full z-10 top-0 h-full right-0 w-96 bg-white px-10 py-7"
-  >
-    <h2 class="text-2xl font-bold mb-10 flex items-center gap-5">
-      <svg
-        class="rotate-180 hover:-translate-x-1 opacity-30 hover:opacity-100 transition cursor-pointer"
-        width="16"
-        height="14"
-        viewBox="0 0 16 14"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M1 7H14.7143"
-          stroke="black"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path
-          d="M8.71436 1L14.7144 7L8.71436 13"
-          stroke="black"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-      Корзина
-    </h2>
-    <div class="flex flex-col flex-1 justify-between">
-      <div class="flex flex-col gap-5">
-        <CartItem
-          title="Мужские Кроссовки Nike Blazer Mid Suede"
-          price="1000"
-          img="/sneakers/sneakers-1.jpg"
-        />
-      </div>
+  <div>
+    <div class="fixed top-0 left-0 h-full w-full bg-black opacity-50 z-20"></div>
 
-      <div>
-        <div class="flex flex-col gap-5">
-          <div class="flex items-end gap-2">
-            <span>Итого:</span>
-            <div class="flex-1 border-b border-dashed" />
-            <span class="font-bold">1000 руб.</span>
+    <div
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-lg p-8 z-30 max-h-full overflow-y-auto"
+    >
+      <DrawerHead />
+
+      <div v-if="!totalPrice || orderId" class="flex h-full items-center justify-center"></div>
+
+      <div v-else>
+        <CartItemList />
+
+        <div class="flex flex-col gap-4 mt-7">
+          <!-- Итоговая стоимость и способ доставки -->
+          <div class="flex gap-2">
+            <span> Итого:</span>
+            <div class="flex-1 border-b border-dashed"></div>
+            <b>{{ totalPrice + deliveryCost }} ₽ </b>
+          </div>
+          <div class="flex gap-2">
+            <span> Доставка:</span>
+            <div class="flex-1 border-b border-dashed"></div>
+            <b>{{ deliveryCost }} ₽ </b>
           </div>
 
-          <div class="flex items-end gap-2">
-            <span>Налог 5%:</span>
-            <div class="flex-1 border-b border-dashed" />
-            <span class="font-bold">50 руб.</span>
+          <!-- Поля для оформления заказа -->
+          <div v-if="!isCreatingOrder">
+            <div class="flex gap-2">
+              <label for="delivery-pickup">Самовывоз</label>
+              <input
+                type="radio"
+                id="delivery-pickup"
+                name="delivery-method"
+                v-model="deliveryMethod"
+                value="pickup"
+              />
+            </div>
+            <div class="flex gap-2">
+              <label for="delivery-courier">Курьер</label>
+              <input
+                type="radio"
+                id="delivery-courier"
+                name="delivery-method"
+                v-model="deliveryMethod"
+                value="courier"
+              />
+            </div>
+            <div v-if="deliveryMethod !== 'courier'">
+              <input
+                type="text"
+                v-model="customerName1"
+                placeholder="Ваше имя"
+                class="input-field"
+              />
+              <input
+                type="text"
+                v-model="customerNumber1"
+                placeholder="Ваш телефон (мы свяжемся для подтверждения заказа)"
+                class="input-field"
+              />
+              <input
+                type="text"
+                v-model="customerName2"
+                placeholder="Имя получателя"
+                class="input-field"
+              />
+              <input
+                type="text"
+                v-model="customerNumber2"
+                placeholder="Телефон получателя"
+                class="input-field"
+              />
+            </div>
+            <div v-if="deliveryMethod === 'courier'">
+              <input
+                type="text"
+                v-model="customerName1"
+                placeholder="Ваше имя"
+                class="input-field"
+              />
+              <input
+                type="text"
+                v-model="customerNumber1"
+                placeholder="Ваш телефон (мы свяжемся для подтверждения заказа)"
+                class="input-field"
+              />
+              <input
+                type="text"
+                v-model="customerName2"
+                placeholder="Имя получателя"
+                class="input-field"
+              />
+              <input
+                type="text"
+                v-model="customerNumber2"
+                placeholder="Телефон получателя"
+                class="input-field"
+              />
+              <input
+                type="text"
+                v-model="customerAddress"
+                placeholder="Адрес доставки"
+                class="input-field"
+              />
+            </div>
+            <!-- Поля для выбора даты и времени -->
+            <div>
+              <label>Выберите удобную дату и время доставки/самовывоза:</label>
+              <input type="datetime-local" v-model="deliveryDateTime" class="input-field" />
+            </div>
+            <!-- Кнопка оформления заказа -->
+            <button :disabled="buttonDisabled" @click="createOrder" class="action-button">
+              Оформить заказ
+            </button>
           </div>
         </div>
-
-        <button
-          class="flex justify-center items-center gap-3 w-full py-3 mt-10 bg-lime-500 text-white rounded-xl transition active:bg-lime-700 hover:bg-lime-600"
-        >
-          Оформить заказ
-          <img src="/arrow-next.svg" alt="Arrow" />
-        </button>
       </div>
     </div>
+    <div v-if="orderId">
+      <h2>Заказ успешно создан!</h2>
+      <p>Для оплаты перейдите на страницу платежей.</p>
+      <a :href="paymentUrl" target="_blank" class="action-button">Оплатить заказ</a>
+    </div>
+    <Header :totalPrice="totalPrice" />
   </div>
 </template>
+
+<style scoped>
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.action-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff69b4; /* Розовый цвет кнопки */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+</style>

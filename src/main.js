@@ -1,5 +1,34 @@
-import { createApp } from 'vue';
-import './style.css';
-import App from './App.vue';
+import './assets/main.css'
 
-createApp(App).mount('#app');
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
+
+import App from './App.vue'
+import Home from './pages/Home.vue'
+import Categories from './pages/Categories.vue'
+import About from './pages/PagesInfo/About.vue'
+import Contacts from './pages/PagesInfo/Contacts.vue'
+import Delivery from './pages/PagesInfo/Delivery.vue'
+import Payment from './pages/PagesInfo/Payment.vue'
+
+const app = createApp(App)
+
+const routes = [
+  { path: '/', name: 'Home', component: Home },
+  { path: '/categories', name: 'Categories', component: Categories },
+  { path: '/about', name: 'About', component: About },
+  { path: '/contacts', name: 'Contacts', component: Contacts },
+  { path: '/delivery', name: 'Delivery', component: Delivery },
+  { path: '/payment', name: 'Payment', component: Payment }
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+})
+
+app.use(router)
+app.use(autoAnimatePlugin)
+
+app.mount('#app')
