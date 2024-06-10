@@ -193,21 +193,57 @@ watch(filters, fetchItems)
   <div class="flex justify-between items-center">
     <h2 class="text-3xl font-normal mb-8">𓍢ִ໋🌷͙֒Букеты и подарки:</h2>
   </div>
-  <div class="categories-container">
-    <ul class="list-none">
-      <li v-for="category in categories" :key="category.id">
-        <button @click="selectCategory(category.id)">{{ category.name }}</button>
-      </li>
-    </ul>
+  <div class="flex">
+    <!-- Кнопки категорий товаров -->
+    <div class="categories-container mr-8">
+      <ul class="list-none">
+        <li v-for="category in categories" :key="category.id">
+          <button @click="selectCategory(category.id)">{{ category.name }}</button>
+        </li>
+      </ul>
+    </div>
 
-    <div v-if="selectedCategory">
+    <!-- Карточки товаров -->
+    <div class="flex flex-col">
       <h2 class="text-xl font-bold mb-4">
         {{ categories.find((cat) => cat.id === selectedCategory)?.name }}
       </h2>
       <CardList :items="items" @addToFavorite="addToFavorite" @addToCart="addToCart" />
     </div>
   </div>
-  <div class="mt-10">
-    <Cardlist :items="items" @add-to-favorite="addToFavorite" @add-to-cart="onClickAddPlus" />
-  </div>
 </template>
+<style>
+/* Общие стили */
+.categories-container {
+  width: 200px; /* Ширина контейнера категорий */
+}
+
+.categories-container button {
+  padding: 8px;
+  margin-bottom: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.categories-container button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Дополнительные стили для маленьких экранов */
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column; /* Изменяем направление flex для маленьких экранов */
+    align-items: center; /* Выравниваем по центру по горизонтали */
+  }
+
+  .categories-container {
+    width: auto; /* Ширина контейнера категорий на маленьких экранах */
+    margin-bottom: 20px; /* Добавляем отступ снизу между категориями и карточками */
+  }
+
+  .flex .categories-container button {
+    font-size: 14px; /* Уменьшаем размер шрифта для маленьких экранов */
+  }
+}
+</style>
