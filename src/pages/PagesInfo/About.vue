@@ -19,7 +19,7 @@
   <p class="pt-4 text-lg" style="font-size: 20px">
     ➱Сезонные цветы: дары природы, меняющиеся с каждым месяцем, чтобы дарить вам новые впечатления.
   </p>
-  <img class="pt-12 pb-12" src="flower.jpg" alt="Наши магазины" />
+  <img class="pt-12 pb-12" src="/flower.jpg" alt="Наши магазины" />
   <h1 class="text-2xl font-bold mb-8">Не забудьте про:</h1>
 
   <p class="pt-4 text-lg" style="font-size: 20px">
