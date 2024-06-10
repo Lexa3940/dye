@@ -1,5 +1,4 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -24,6 +23,14 @@ export default defineConfig({
     }
   },
   server: {
-    historyApiFallback: true
+    historyApiFallback: true // добавьте эту строку для перенаправления всех маршрутов на index.html
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
   }
 })
+
