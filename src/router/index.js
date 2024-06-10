@@ -8,7 +8,7 @@ import Payment from '../pages/PagesInfo/Payment.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
-  { path: '/categories', name: 'Categories', component: Categories },
+  { path: '/', name: 'Categories', component: Categories  },
   { path: '/about', name: 'About', component: About },
   { path: '/contacts', name: 'Contacts', component: Contacts },
   { path: '/delivery', name: 'Delivery', component: Delivery },
