@@ -23,7 +23,7 @@ defineProps({
         <img
           @click="emit('onClickRemove')"
           class="opacity-40 hover:opacity-100 cursor-pointer transition"
-          src="close.svg"
+          src="/close.svg"
         />
       </div>
     </div>
