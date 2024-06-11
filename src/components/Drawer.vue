@@ -234,7 +234,7 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
   }
 
   .final-total b, .delivery-cost b {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -249,11 +249,11 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
   .input-field,
   .action-button,
   .label-text, .final-total, .delivery-cost, .delivery-option, .datetime-label {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .final-total b, .delivery-cost b {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 </style>
