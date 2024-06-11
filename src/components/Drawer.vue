@@ -86,20 +86,20 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
       <div class="flex flex-col gap-4 mt-7">
         <!-- Итоговая стоимость и способ доставки -->
         <div class="flex gap-2">
-          <span> Итого:</span>
+          <span class="label-text"> Итого:</span>
           <div class="flex-1 border-b border-dashed"></div>
-          <b>{{ totalPrice + deliveryCost }} ₽ </b>
+          <b class="final-total">{{ totalPrice + deliveryCost }} ₽ </b>
         </div>
         <div class="flex gap-2">
-          <span> Доставка:</span>
+          <span class="label-text"> Доставка:</span>
           <div class="flex-1 border-b border-dashed"></div>
-          <b>{{ deliveryCost }} ₽ </b>
+          <b class="delivery-cost">{{ deliveryCost }} ₽ </b>
         </div>
 
         <!-- Поля для оформления заказа -->
         <div v-if="!isCreatingOrder">
           <div class="flex gap-2">
-            <label for="delivery-pickup">Самовывоз</label>
+            <label for="delivery-pickup" class="delivery-option">Самовывоз</label>
             <input
               type="radio"
               id="delivery-pickup"
@@ -109,7 +109,7 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
             />
           </div>
           <div class="flex gap-2">
-            <label for="delivery-courier">Курьер</label>
+            <label for="delivery-courier" class="delivery-option">Курьер</label>
             <input
               type="radio"
               id="delivery-courier"
@@ -168,7 +168,7 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
           </div>
           <!-- Поля для выбора даты и времени -->
           <div>
-            <label>Выберите удобную дату и время доставки/самовывоза:</label>
+            <label class="datetime-label">Выберите удобную дату и время доставки/самовывоза:</label>
             <input type="datetime-local" v-model="deliveryDateTime" class="input-field" />
           </div>
           <!-- Кнопка оформления заказа -->
@@ -257,4 +257,5 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
   }
 }
 </style>
+
 
