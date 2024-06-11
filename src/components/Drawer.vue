@@ -206,6 +206,14 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
   cursor: not-allowed;
 }
 
+.label-text, .final-total, .delivery-cost, .delivery-option, .datetime-label {
+  font-size: 14px; /* Default font size for these elements */
+}
+
+.final-total b, .delivery-cost b {
+  font-weight: bold;
+}
+
 /* Общие стили для корзины */
 .cart-container {
   /* Ваши общие стили для корзины */
@@ -220,8 +228,33 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
 
   /* Уменьшаем размеры текста и элементов на маленьких экранах */
   .input-field,
-  .action-button {
+  .action-button,
+  .label-text, .final-total, .delivery-cost, .delivery-option, .datetime-label {
+    font-size: 12px;
+  }
+
+  .final-total b, .delivery-cost b {
     font-size: 12px;
   }
 }
+
+/* Медиа-запрос для очень маленьких экранов (например, ширина до 480px) */
+@media screen and (max-width: 480px) {
+  .cart-container {
+    width: calc(90% - 20px); /* Ширина корзины на очень маленьких экранах */
+    margin: 10px; /* Отступы от краев */
+  }
+
+  /* Уменьшаем размеры текста и элементов на очень маленьких экранах */
+  .input-field,
+  .action-button,
+  .label-text, .final-total, .delivery-cost, .delivery-option, .datetime-label {
+    font-size: 10px;
+  }
+
+  .final-total b, .delivery-cost b {
+    font-size: 10px;
+  }
+}
 </style>
+
