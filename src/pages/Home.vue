@@ -1,8 +1,13 @@
 <script setup>
+
 import { reactive, watch, ref, onMounted } from 'vue'
+
 import axios from 'axios'
+
 import { inject } from 'vue'
+
 import CardList from '../components/CardList.vue'
+
 import debounce from 'lodash.debounce'
 
 const items = ref([])
@@ -84,6 +89,7 @@ watch(Cart, () => {
 })
 
 watch(filters, fetchItems)
+
 </script>
 
 <template>
@@ -93,7 +99,7 @@ watch(filters, fetchItems)
       style="
         color: #722f37;
         text-shadow: 2px 2px 2px #deb887;
-        white-space: nowrap; /* Убрать перенос текста */
+        white-space: nowrap;
       "
     >
       Доставка цветов в Черкесске
@@ -210,4 +216,11 @@ watch(filters, fetchItems)
     height: 16px;
   }
 }
+
+@media (max-width: 480px) {
+  .header-text {
+    font-size: 20px;
+  }
+}
 </style>
+
