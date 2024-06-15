@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="center">
-      <span class="center-text">доставка 24/7</span>
+      <span class="center-text"> ❀ доставка 24/7 ❀ </span>
     </div>
   </footer>
 </template>
