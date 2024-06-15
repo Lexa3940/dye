@@ -5,13 +5,9 @@
         <img src="/logo.png" alt="Logo" class="logo" />
         <div class="text-content">
           <span class="main-text">Цветы 24</span>
-        </div>
-         <span class="sub-text">Черкесск ул. Парковая 21</span>
+          <span class="sub-text">Черкесск ул. Парковая 21</span>
           <span class="sub-text">Черкесск ул. Космонавтов 13</span>
-           <span class="sub-text"></span>
-      </div>
-        <div class="center">
-         <span class="sub-text">2024</span>
+        </div>
       </div>
       <div class="right-side">
         <a href="https://api.whatsapp.com/send?phone=89996384073" target="_blank">
@@ -21,6 +17,9 @@
           <img height="30" width="30" src="/tg2.jpg" alt="Telegram" />
         </a>
       </div>
+    </div>
+    <div class="center">
+      <span class="center-text">2024</span>
     </div>
   </footer>
 </template>
@@ -33,10 +32,10 @@ export default {
 
 <style scoped>
 .footer {
-  background-color:  rgb(255, 228, 225);
+  background-color: rgb(255, 228, 225);
   padding: 30px; /* Increased padding for more height */
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* Align items in a column */
   align-items: center;
 }
 
@@ -45,6 +44,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px; /* Add some space between container and center */
 }
 
 .left-side {
@@ -82,7 +82,16 @@ img {
   height: 30px;
   width: 30px;
 }
+
+.center {
+  text-align: center;
+}
+
+.center-text {
+  font-size: 1rem;
+}
 </style>
+
 
 
 
