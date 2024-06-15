@@ -2,7 +2,6 @@
   <footer class="footer">
     <div class="container">
       <div class="left-side">
-        <img src="/logo.png" alt="Logo" class="logo" />
         <div class="text-content">
           <span class="main-text"> © Цветы 24 </span>
           <span class="sub-text">Черкесск ул. Парковая 21</span>
