@@ -2,6 +2,7 @@
   <footer class="footer">
     <div class="container">
       <div class="left-side">
+        <img src="/logo.png" alt="Logo" class="logo" />
         <span>Цветы 24</span>
       </div>
       <div class="right-side">
@@ -24,7 +25,7 @@ export default {
 
 <style scoped>
 .footer {
-  background-color: #FFDAB9;
+  background-color: #FFDEAD;
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -39,6 +40,17 @@ export default {
 }
 
 .left-side {
+  display: flex;
+  align-items: center;
+}
+
+.left-side .logo {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+
+.left-side span {
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -54,4 +66,5 @@ img {
   width: 30px;
 }
 </style>
+
 
