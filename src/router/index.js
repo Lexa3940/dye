@@ -6,6 +6,7 @@ import Contacts from '../pages/PagesInfo/Contacts.vue'
 import Delivery from '../pages/PagesInfo/Delivery.vue'
 import Payment from '../pages/PagesInfo/Payment.vue'
 
+
 const routes = [
   { path: '/', name: 'Home', component: Home },
    { path: '/categories', name: 'Categories', component: Categories },
