@@ -5,9 +5,13 @@
         <img src="/logo.png" alt="Logo" class="logo" />
         <div class="text-content">
           <span class="main-text">Цветы 24</span>
-          <span class="sub-text">Черкесск ул. Парковая 21</span>
-          <span class="sub-text">Черкесск ул. Космонавтов 13</span>
         </div>
+         <span class="sub-text">Черкесск ул. Парковая 21</span>
+          <span class="sub-text">Черкесск ул. Космонавтов 13</span>
+           <span class="sub-text"></span>
+      </div>
+        <div class="center">
+         <span class="sub-text">2024</span>
       </div>
       <div class="right-side">
         <a href="https://api.whatsapp.com/send?phone=89996384073" target="_blank">
@@ -29,7 +33,7 @@ export default {
 
 <style scoped>
 .footer {
-  background-color: #ff69b4;
+  background-color:  rgb(255, 228, 225);
   padding: 30px; /* Increased padding for more height */
   display: flex;
   justify-content: center;
