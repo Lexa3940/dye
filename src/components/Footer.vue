@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="center">
-      <span class="center-text"> •┈••✦ доставка 24/7  ✦••┈•  </span>
+      <span class="center-text"> ✿°•доставка 24/7•°✿  </span>
     </div>
   </footer>
 </template>
@@ -30,12 +30,25 @@ export default {
 </script>
 
 <style scoped>
+/* Smooth transition between footer and main content */
 .footer {
   background-color: rgb(255, 228, 225);
-  padding: 30px; /* Increased padding for more height */
+  padding: 30px;
   display: flex;
-  flex-direction: column; /* Align items in a column */
+  flex-direction: column;
   align-items: center;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .container {
@@ -43,7 +56,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px; /* Add some space between container and center */
+  margin-bottom: 10px;
 }
 
 .left-side {
@@ -65,10 +78,12 @@ export default {
 .main-text {
   font-size: 1.5rem;
   font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 .sub-text {
-  font-size: 1rem; /* Smaller font size for the additional text */
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 .right-side {
@@ -80,6 +95,7 @@ img {
   cursor: pointer;
   height: 30px;
   width: 30px;
+  transition: transform 0.3s ease;
 }
 
 .center {
@@ -88,6 +104,18 @@ img {
 
 .center-text {
   font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+/* Hover effects */
+.main-text:hover,
+.sub-text:hover,
+.center-text:hover {
+  color: pink;
+}
+
+img:hover {
+  transform: scale(1.1);
 }
 
 /* Media Queries for responsiveness */
@@ -139,6 +167,7 @@ img {
   }
 }
 </style>
+
 
 
 
