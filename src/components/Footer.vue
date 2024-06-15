@@ -3,7 +3,11 @@
     <div class="container">
       <div class="left-side">
         <img src="/logo.png" alt="Logo" class="logo" />
-        <span>Цветы 24</span>
+        <div class="text-content">
+          <span class="main-text">Цветы 24</span>
+          <span class="sub-text">Черкесск ул. Парковая 21</span>
+          <span class="sub-text">Черкесск ул. Космонавтов 13</span>
+        </div>
       </div>
       <div class="right-side">
         <a href="https://api.whatsapp.com/send?phone=89996384073" target="_blank">
@@ -25,8 +29,8 @@ export default {
 
 <style scoped>
 .footer {
-  background-color: #FFDEAD;
-  padding: 20px;
+  background-color: #ff69b4;
+  padding: 30px; /* Increased padding for more height */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,9 +54,18 @@ export default {
   margin-right: 10px;
 }
 
-.left-side span {
+.text-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-text {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.sub-text {
+  font-size: 1rem; /* Smaller font size for the additional text */
 }
 
 .right-side {
@@ -66,5 +79,6 @@ img {
   width: 30px;
 }
 </style>
+
 
 
