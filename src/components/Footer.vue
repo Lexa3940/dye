@@ -3,7 +3,7 @@
     <div class="container">
       <div class="left-side">
         <div class="text-content">
-          <span class="main-text"> © Цветы 24 </span>
+          <span class="main-text">© Цветы 24</span>
           <span class="sub-text">Черкесск ул. Парковая 21</span>
           <span class="sub-text">Черкесск ул. Космонавтов 13</span>
         </div>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="center">
-      <span class="center-text"> доставка 24/7 </span>
+      <span class="center-text">доставка 24/7</span>
     </div>
   </footer>
 </template>
@@ -88,6 +88,55 @@ img {
 
 .center-text {
   font-size: 1rem;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .main-text {
+    font-size: 1.2rem;
+  }
+
+  .sub-text {
+    font-size: 0.9rem;
+  }
+
+  .center-text {
+    font-size: 0.9rem;
+  }
+
+  .left-side .logo {
+    height: 25px;
+    width: 25px;
+  }
+
+  .right-side img {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-text {
+    font-size: 1rem;
+  }
+
+  .sub-text {
+    font-size: 0.8rem;
+  }
+
+  .center-text {
+    font-size: 0.8rem;
+  }
+
+  .left-side .logo {
+    height: 20px;
+    width: 20px;
+  }
+
+  .right-side img {
+    height: 20px;
+    width: 20px;
+  }
 }
 </style>
 
