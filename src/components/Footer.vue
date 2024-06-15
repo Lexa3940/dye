@@ -4,7 +4,7 @@
       <div class="left-side">
         <img src="/logo.png" alt="Logo" class="logo" />
         <div class="text-content">
-          <span class="main-text">Цветы 24</span>
+          <span class="main-text"> © Цветы 24 </span>
           <span class="sub-text">Черкесск ул. Парковая 21</span>
           <span class="sub-text">Черкесск ул. Космонавтов 13</span>
         </div>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="center">
-      <span class="center-text">ежедневно, 24/7ч </span>
+      <span class="center-text"> доставка 24/7 </span>
     </div>
   </footer>
 </template>
