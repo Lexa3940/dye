@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="center">
-      <span class="center-text">2024</span>
+      <span class="center-text">ежедневно, 24/7ч </span>
     </div>
   </footer>
 </template>
