@@ -186,7 +186,7 @@ watch(filters, fetchItems)
   }
 
   .header-text {
-    font-size: 20px;
+    font-size: 15px;
     margin-bottom: 8px;
     position: static;
     text-align: center;
@@ -219,7 +219,7 @@ watch(filters, fetchItems)
 
 @media (max-width: 480px) {
   .header-text {
-    font-size: 18 px;
+    font-size: 15 px;
   }
 }
 </style>
