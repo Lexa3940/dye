@@ -9,10 +9,10 @@
         </div>
       </div>
       <div class="right-side">
-        <a href="https://api.whatsapp.com/send?phone=89996384073" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=89283714169" target="_blank">
           <img height="30" width="30" src="/whats.jpg" alt="Whatsapp" />
         </a>
-        <a href="https://t.me/Cloud_020" target="_blank" rel="noopener noreferrer">
+        <a href="https://t.me/89283714169" target="_blank" rel="noopener noreferrer">
           <img height="30" width="30" src="/tg2.jpg" alt="Telegram" />
         </a>
       </div>
