@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="right-side">
-<a href="https://wa.me/89283714169?text=Здравствуйте!%20ВВВ%20могу%20вам%20помочь?" target="_blank">
+<a href="https://wa.me/+79283714169?text=Здравствуйте!%20ВВВ%20могу%20вам%20помочь?" target="_blank">
   <img height="30" width="30" src="/whats.jpg" alt="Whatsapp" />
 </a>
        <a href="https://t.me/+79283714169" target="_blank">
